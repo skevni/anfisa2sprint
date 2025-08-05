@@ -9,10 +9,9 @@ class Contest(models.Model):
     )
     price = models.IntegerField(
         verbose_name='Цена',
-        validators=[MinValueValidator(10), MaxValueValidator(100)]
+        validators=[MinValueValidator(10), MaxValueValidator(100)],
+        help_text='Рекомендованная розничная цена'
     )
-    # min_value=10, max_value=100,
-    # help_text='Рекомендованная розничная цена'
     comment = models.TextField(
         verbose_name='Комментарий',
         blank=True
