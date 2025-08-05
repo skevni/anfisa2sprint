@@ -1,7 +1,25 @@
 from django import forms
 
+from contest.models import Contest
 
-class ContestForm(forms.Form):
+
+class ContestForm(forms.ModelForm):
+    """_summary_
+
+    Args:
+        forms (_type_): _description_
+    """
+
+    class Meta():
+        """
+        docstring
+        """
+        model = Contest
+
+        fields = '__all__'
+
+
+class ContestForm1(forms.Form):
     title = forms.CharField(label='Название', max_length=20)
     description = forms.CharField(
         label='Описание',
