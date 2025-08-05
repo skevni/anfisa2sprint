@@ -11,7 +11,6 @@ class Category(PublishedModel):
     output_order = models.PositiveSmallIntegerField(
         default=100,
         verbose_name='Порядок отображения'
-
     )
 
     class Meta:
@@ -72,7 +71,6 @@ class IceCream(PublishedModel):
     output_order = models.PositiveSmallIntegerField(
         default=100,
         verbose_name='Порядок отображения'
-
     )
 
     class Meta:
