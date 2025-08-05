@@ -6,5 +6,17 @@
 
 {% block content %}
   <!-- Место для HTML-формы -->
+   <form>
+    <table>
+      {{ form }}
+    </table>
+    <input type="submit" value="Отправить" >
+    
+   </form>
   <!-- Место для сообщения об успешном принятии заявки -->
+  {% with data=request.GET %}
+    {% if form.is_valid %}
+      <h2>Рецепт мороженого "{{ data.title }}" принят на конкурс!</h2>
+    {% endif %}
+  {% endwith %}
 {% endblock %}
