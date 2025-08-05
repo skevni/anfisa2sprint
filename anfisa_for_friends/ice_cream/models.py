@@ -1,4 +1,3 @@
-from decimal import Decimal
 from django.db import models
 
 from core.models import PublishedModel
@@ -6,8 +5,7 @@ from core.models import PublishedModel
 
 class Category(PublishedModel):
     title = models.CharField(max_length=256, verbose_name='Название')
-    slug = models.SlugField(max_length=64, unique=True,
-                            verbose_name='Слаг')
+    slug = models.SlugField(max_length=64, unique=True, verbose_name='Слаг')
     output_order = models.PositiveSmallIntegerField(
         default=100,
         verbose_name='Порядок отображения'
@@ -16,9 +14,11 @@ class Category(PublishedModel):
     class Meta:
         verbose_name = 'категория'
         verbose_name_plural = 'Категории'
+        ordering = ('output_order', )
 
-    def __str__(self) -> str:
+    def __str__(self):
         return self.title
+
 
 class Topping(PublishedModel):
     title = models.CharField(max_length=256, verbose_name='Название')
@@ -28,7 +28,7 @@ class Topping(PublishedModel):
         verbose_name = 'топпинг'
         verbose_name_plural = 'Топпинги'
 
-    def __str__(self) -> str:
+    def __str__(self):
         return self.title
 
 
@@ -40,10 +40,10 @@ class Wrapper(PublishedModel):
     )
 
     class Meta:
-        verbose_name = 'обрертка'
-        verbose_name_plural = 'Обертки'
+        verbose_name = 'обёртка'
+        verbose_name_plural = 'Обёртки'
 
-    def __str__(self) -> str:
+    def __str__(self):
         return self.title
 
 
@@ -56,7 +56,7 @@ class IceCream(PublishedModel):
         related_name='ice_cream',
         null=True,
         blank=True,
-        verbose_name='Обертка'
+        verbose_name='Обёртка'
     )
     category = models.ForeignKey(
         Category,
@@ -64,18 +64,18 @@ class IceCream(PublishedModel):
         related_name='ice_creams',
         verbose_name='Категория'
     )
-    toppings = models.ManyToManyField(Topping, verbose_name='Топпинги')
-    is_on_main = models.BooleanField(default=False, verbose_name='На шлавную')
-    price = models.DecimalField(max_digits=5, decimal_places=2,
-                                default=Decimal(0))
     output_order = models.PositiveSmallIntegerField(
         default=100,
         verbose_name='Порядок отображения'
     )
+    toppings = models.ManyToManyField(Topping, verbose_name='Топпинги')
+    is_on_main = models.BooleanField(default=False, verbose_name='На главную')
+    price = models.DecimalField(max_digits=5, decimal_places=2)
 
     class Meta:
         verbose_name = 'мороженое'
         verbose_name_plural = 'Мороженое'
+        # ordering = ('output_order', 'title')
 
-    def __str__(self) -> str:
+    def __str__(self):
         return self.title
