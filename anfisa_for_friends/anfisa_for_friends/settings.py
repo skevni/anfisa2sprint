@@ -11,16 +11,16 @@ ALLOWED_HOSTS = ['*']
 
 
 INSTALLED_APPS = [
+    'homepage.apps.HomepageConfig',
+    'ice_cream.apps.IceCreamConfig',
+    'about.apps.AboutConfig',
+    'contest.apps.ContestConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'homepage.apps.HomepageConfig',
-    'ice_cream.apps.IceCreamConfig',
-    'about.apps.AboutConfig',
-    'contest.apps.ContestConfig',
     'django_bootstrap5',
 ]
 
@@ -28,7 +28,9 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    # CSRF disabled to prevent access being denied in the built-in
+    # trainer's browser window.
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
